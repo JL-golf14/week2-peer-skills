@@ -1,6 +1,6 @@
 $(document).ready(function(){
-
-
+  var arrayP = [{name: 'Tony', yearsOfExperience: 10}, {name: 'Carla', yearsOfExperience: 4}];
+  updatePage();
 
   $('form').on('submit',function(event){
     event.preventDefault();
@@ -12,19 +12,29 @@ $(document).ready(function(){
       newEmployeeObject[inputFieldObject.name] = inputFieldObject.value;
 
     });
-arrayP.push(newEmployeeObject);
+    arrayP.push(newEmployeeObject);
+    updatePage();
+
+  });
+
+
+  function updatePage(){
     var totalYears = 0;
+    $('#yearsIn').empty();
     arrayP.forEach(function(person){
       $('#yearsIn').append(
         '<tr>'+'<td>'+ person.name+ '</td>' +'<td>'+ "years of experience  " + person.yearsOfExperience + '</td>' +
         '</tr>'
       );
-      totalYears += person.yearsOfExperience;
+      totalYears += parseFloat(person.yearsOfExperience);
+
+
     });
-    $('h4').append("Total Years of all employees  " + totalYears);
+    $('h4').text("Total Years of all employees  " + totalYears);
 
-  });
+  }
 
-  var arrayP = [{name: 'Tony', yearsOfExperience: 10}, {name: 'Carla', yearsOfExperience: 4}];
+
+
 
 });
